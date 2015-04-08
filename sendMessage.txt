@@ -1,0 +1,20 @@
+*** Settings ***
+Resource    ./common/assets/secrets.txt
+Resource    ./common/assets/resource.txt
+Resource    local_resource.txt
+Library    XmppClient
+
+*** Variables ***
+${USER}    ${VALID_PARTNERCRA}
+${PASSWORD}    ${VALID_PARTNERCRA_PASSWORD}
+${TO}    ${TO_XMPP}
+
+*** Test Cases ***
+Xmpp Send Message
+    ${retVal}    send xmpp message    ${USER}    ${PASSWORD}    ${TO}    test message
+    Should Be Equal    ${retVal}    True
+
+
+
+
+*** Keywords ***
