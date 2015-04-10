@@ -1,0 +1,31 @@
+*** Settings ***
+Library           uuid
+
+*** Variables ***
+#${SELENIUM_HOST}    localhost
+${SELENIUM_HOST}    ci.forgeservicelab.fi
+${SELENIUM_PORT}    4444
+
+
+*** Keywords ***
+login Auth
+    [Arguments]    ${username}   ${password}  ${results}
+    Input Text    id=username    ${username}
+    Set Log Level    NONE
+    Input Text    id=password    ${password}
+    Set Log Level    DEBUG
+    Click Button  name=button
+
+Go to homepage
+    Open Browser    ${AUTH_URL}    ${BROWSER}     remote_url=http://ci.forgeservicelab.fi:4444/wd/hub 
+#    Open Browser    ${AUTH_URL}    ${BROWSER}    
+
+Log Out and Close Browsers
+    Wait Until Page Contains    Sign out
+    Click Element   link=Sign out
+#    Wait Until Page Contains    Log in
+#    Go to    ${AUTH_URL}
+#    Click Link    Logout
+    Page Should Contain    Bye
+    Close All Browsers
+
