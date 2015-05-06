@@ -5,16 +5,14 @@ Resource    local_resource.txt
 Library    XmppClient
 
 *** Variables ***
-${USER}    ${VALID_PARTNERCRA}
-${PASSWORD}    ${VALID_PARTNERCRA_PASSWORD}
+${USER}    ${VALID_USER}
+${PASSWORD}    ${VALID_PASSWORD}
 ${TO}    ${TO_XMPP}
 
 *** Test Cases ***
 Xmpp Send Message
     ${retVal}    send xmpp message    ${USER}    ${PASSWORD}    ${TO}    test message    ${XMPP_URL}
     Should Be Equal    ${retVal}    True
-
-
 
 
 *** Keywords ***
